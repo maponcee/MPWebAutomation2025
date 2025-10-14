@@ -24,6 +24,12 @@ class BasePagePlay(Page):
         logger.info(f"Entering text '{text}' into {element_name} element: {tag_name}")
         locator.fill(text)
 
+    def hover_element(self, locator):
+        """Click on element"""
+        tag_name, element_name = self.get_tag_and_text(locator)
+        logger.info(f"Hover on {element_name} element: {tag_name}")
+        locator.hover()
+
     def get_tag_and_text(self, locator):
         """Get tag name and text from locator"""
         # get the tag from locator: button, span, div, a, etc.
