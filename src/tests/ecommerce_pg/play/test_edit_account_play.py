@@ -1,12 +1,21 @@
 import re
+import time
+
 from playwright.sync_api import Page, expect
 
 from src.pages.ecommerce.play.home_page_play import HomePagePlay
-from src.pages.ecommerce.play.my_account_play import MyAccountPagePlay
 
 
 class TestEditAccountPlay:
     def test_edit_account_information(self, page: Page) -> None:
+        """
+        Test the edit account after the user is logged
+        steps:
+           1. Access to Home Page
+           2. access to the Login page
+           3. Login to page
+           4. Update the first and Last name
+        """
         home_page = HomePagePlay(page)
         home_page.navigate()
         home_page.hover_my_account_menu()
@@ -18,5 +27,6 @@ class TestEditAccountPlay:
         edit_account_page.click_on_continue_button()
         expect(my_account_page.success_my_account).to_be_visible()
         expect(my_account_page.success_my_account).to_contain_text("Your account has been successfully updated.")
+        time.sleep(3)
 
 

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="7" time="54.939" timestamp="2025-10-14T23:51:20.950286-04:00" hostname="MAGDAPE"><testcase classname="src.tests.ecommerce_pg.play.test_edit_account_play.TestEditAccountPlay" name="test_edit_account_information[chromium]" time="8.439" /><testcase classname="src.tests.ecommerce_pg.play.test_my_account_play.TestMyAccountPlay" name="test_login[chromium]" time="4.865" /><testcase classname="src.tests.ecommerce_pg.play.test_my_account_play.TestMyAccountPlay" name="test_edit_account_information[chromium]" time="0.079"><failure message="AttributeError: 'MyAccountPagePlay' object has no attribute 'navigate'">self = &lt;test_my_account_play.TestMyAccountPlay object at 0x000001FA7AD6D670&gt;, page = &lt;Page url='about:blank'&gt;
+
+    def test_edit_account_information(self, page: Page) -&gt; None:
+        my_account_page = MyAccountPagePlay(page)
+&gt;       my_account_page.navigate()
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'MyAccountPagePlay' object has no attribute 'navigate'
+
+src\tests\ecommerce_pg\play\test_my_account_play.py:20: AttributeError</failure></testcase><testcase classname="src.tests.ecommerce_pg.play.test_register_user_page_play.TestRegisterUserPlay" name="test_register_new_user[chromium]" time="9.948"><failure message="AssertionError: Locator expected to be visible&#10;Actual value: &lt;element(s) not found&gt; &#10;Call log:&#10;  - Expect &quot;to_be_visible&quot; with timeout 5000ms&#10;  - waiting for get_by_role(&quot;heading&quot;, name=&quot; Your Account Has Been&quot;)">self = &lt;test_register_user_page_play.TestRegisterUserPlay object at 0x000001FA7AD6DBB0&gt;
+page = &lt;Page url='https://ecommerce-playground.lambdatest.io/index.php?route=account/register'&gt;
+
+    def test_register_new_user(self, page: Page) -&gt; None:
+        home_page = HomePagePlay(page)
+        home_page.navigate()
+        home_page.hover_my_account_menu()
+        register_page = home_page.click_on_register_menu()
+        register_page.enter_first_name("Juan")
+        register_page.enter_last_name("Perez")
+        register_page.enter_email_to_register_user("juan_perex@test.com")
+        register_page.enter_phone("245341354")
+        register_page.enter_password_to_register("Test123!")
+        register_page.enter_confirmation_password_to_register("Test123!")
+        register_page.select_private_policy()
+        register_page.click_on_continue_button()
+&gt;       expect(register_page.success).to_be_visible()
+E       AssertionError: Locator expected to be visible
+E       Actual value: &lt;element(s) not found&gt; 
+E       Call log:
+E         - Expect "to_be_visible" with timeout 5000ms
+E         - waiting for get_by_role("heading", name=" Your Account Has Been")
+
+src\tests\ecommerce_pg\play\test_register_user_page_play.py:21: AssertionError</failure></testcase><testcase classname="src.tests.ecommerce_pg.test_home_page.TestEcommerceHomePage" name="test_ecommerce_home_page" time="15.607" /><testcase classname="src.tests.ecommerce_pg.test_my_Account.TestMyAccount" name="test_access_to_login_page" time="3.271" /><testcase classname="src.tests.ecommerce_pg.test_my_Account.TestMyAccount" name="test_register_new_user" time="12.623"><failure message="selenium.common.exceptions.TimeoutException: Message: &#10;Stacktrace:&#10;&#09;GetHandleVerifier [0x0x7ff79e05e9e5+80021]&#10;&#09;GetHandleVerifier [0x0x7ff79e05ea40+80112]&#10;&#09;(No symbol) [0x0x7ff79dde060f]&#10;&#09;(No symbol) [0x0x7ff79de38854]&#10;&#09;(No symbol) [0x0x7ff79de38b1c]&#10;&#09;(No symbol) [0x0x7ff79de8c927]&#10;&#09;(No symbol) [0x0x7ff79de6126f]&#10;&#09;(No symbol) [0x0x7ff79de8968a]&#10;&#09;(No symbol) [0x0x7ff79de61003]&#10;&#09;(No symbol) [0x0x7ff79de295d1]&#10;&#09;(No symbol) [0x0x7ff79de2a3f3]&#10;&#09;GetHandleVerifier [0x0x7ff79e31dd8d+2960445]&#10;&#09;GetHandleVerifier [0x0x7ff79e31804a+2936570]&#10;&#09;GetHandleVerifier [0x0x7ff79e338a87+3070263]&#10;&#09;GetHandleVerifier [0x0x7ff79e0784ce+185214]&#10;&#09;GetHandleVerifier [0x0x7ff79e07ff1f+216527]&#10;&#09;GetHandleVerifier [0x0x7ff79e067c24+117460]&#10;&#09;GetHandleVerifier [0x0x7ff79e067ddf+117903]&#10;&#09;GetHandleVerifier [0x0x7ff79e04dcb8+11112]&#10;&#09;BaseThreadInitThunk [0x0x7ff83df1e8d7+23]&#10;&#09;RtlUserThreadStart [0x0x7ff83f2cc53c+44]">self = &lt;test_my_Account.TestMyAccount object at 0x000001FA7ADC46B0&gt;, driver = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="2a96f626684ec8d94054ead5c7271a64")&gt;
+env = 'development'
+
+    def test_register_new_user(self, driver, env):
+        """
+         Test to verify it is possible to create a new user
+        """
+        first_name = (By.ID, "input-firstname")
+        last_name = (By.ID, "input-lastname")
+        e_mail = (By.ID, "input-email")
+        phone = (By.ID, "input-telephone")
+        new_password = (By.ID, "input-password")
+        confirm_password = (By.ID, "input-confirm")
+    
+        logger.info("Environment: %s", env)
+        # create the page object
+        my_account_page = MyAccountPage(driver, env)
+&gt;       register_page = my_account_page.click_register_option()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src\tests\ecommerce_pg\test_my_Account.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\pages\ecommerce\selenium\my_account_page.py:23: in click_register_option
+    self.click_element(self.register_option)
+src\pages\ecommerce\selenium\base_page.py:21: in click_element
+    self.highlight(self.driver, self.find_element(by_locator))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\pages\ecommerce\selenium\base_page.py:16: in find_element
+    return self.wait.until(EC.visibility_of_element_located(by_locator))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.support.wait.WebDriverWait (session="2a96f626684ec8d94054ead5c7271a64")&gt;
+method = &lt;function visibility_of_element_located.&lt;locals&gt;._predicate at 0x000001FA7B19AAC0&gt;, message = ''
+
+    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = "") -&gt; T:
+        """Wait until the method returns a value that is not False.
+    
+        Calls the method provided with the driver as an argument until the
+        return value does not evaluate to ``False``.
+    
+        Parameters:
+        -----------
+        method: callable(WebDriver)
+            - A callable object that takes a WebDriver instance as an argument.
+    
+        message: str
+            - Optional message for :exc:`TimeoutException`
+    
+        Return:
+        -------
+        object: T
+            - The result of the last call to `method`
+    
+        Raises:
+        -------
+        TimeoutException
+            - If 'method' does not return a truthy value within the WebDriverWait
+            object's timeout
+    
+        Example:
+        --------
+        &gt;&gt;&gt; from selenium.webdriver.common.by import By
+        &gt;&gt;&gt; from selenium.webdriver.support.ui import WebDriverWait
+        &gt;&gt;&gt; from selenium.webdriver.support import expected_conditions as EC
+    
+        # Wait until an element is visible on the page
+        &gt;&gt;&gt; wait = WebDriverWait(driver, 10)
+        &gt;&gt;&gt; element = wait.until(EC.visibility_of_element_located((By.ID, "exampleId")))
+        &gt;&gt;&gt; print(element.text)
+        """
+        screen = None
+        stacktrace = None
+    
+        end_time = time.monotonic() + self._timeout
+        while True:
+            try:
+                value = method(self._driver)
+                if value:
+                    return value
+            except self._ignored_exceptions as exc:
+                screen = getattr(exc, "screen", None)
+                stacktrace = getattr(exc, "stacktrace", None)
+            if time.monotonic() &gt; end_time:
+                break
+            time.sleep(self._poll)
+&gt;       raise TimeoutException(message, screen, stacktrace)
+E       selenium.common.exceptions.TimeoutException: Message: 
+E       Stacktrace:
+E       	GetHandleVerifier [0x0x7ff79e05e9e5+80021]
+E       	GetHandleVerifier [0x0x7ff79e05ea40+80112]
+E       	(No symbol) [0x0x7ff79dde060f]
+E       	(No symbol) [0x0x7ff79de38854]
+E       	(No symbol) [0x0x7ff79de38b1c]
+E       	(No symbol) [0x0x7ff79de8c927]
+E       	(No symbol) [0x0x7ff79de6126f]
+E       	(No symbol) [0x0x7ff79de8968a]
+E       	(No symbol) [0x0x7ff79de61003]
+E       	(No symbol) [0x0x7ff79de295d1]
+E       	(No symbol) [0x0x7ff79de2a3f3]
+E       	GetHandleVerifier [0x0x7ff79e31dd8d+2960445]
+E       	GetHandleVerifier [0x0x7ff79e31804a+2936570]
+E       	GetHandleVerifier [0x0x7ff79e338a87+3070263]
+E       	GetHandleVerifier [0x0x7ff79e0784ce+185214]
+E       	GetHandleVerifier [0x0x7ff79e07ff1f+216527]
+E       	GetHandleVerifier [0x0x7ff79e067c24+117460]
+E       	GetHandleVerifier [0x0x7ff79e067ddf+117903]
+E       	GetHandleVerifier [0x0x7ff79e04dcb8+11112]
+E       	BaseThreadInitThunk [0x0x7ff83df1e8d7+23]
+E       	RtlUserThreadStart [0x0x7ff83f2cc53c+44]
+
+venv\Lib\site-packages\selenium\webdriver\support\wait.py:138: TimeoutException</failure></testcase></testsuite></testsuites>

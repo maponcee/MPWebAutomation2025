@@ -1,12 +1,22 @@
 import re
+import time
+
 from playwright.sync_api import Page, expect
 
 from src.pages.ecommerce.play.home_page_play import HomePagePlay
-from src.pages.ecommerce.play.my_account_play import MyAccountPagePlay
 
 
 class TestMyAccountPlay:
     def test_login(self, page: Page) -> None:
+        """
+        Test the login process with existing user.
+        steps:
+           1. Access to Home Page
+           2. Make a hove on My account menu
+           3. Click on Login button
+           4. Enter the valid credentials
+           5. Click on Login page
+        """
         home_page = HomePagePlay(page)
         home_page.navigate()
         home_page.hover_my_account_menu()
@@ -14,12 +24,6 @@ class TestMyAccountPlay:
         my_account_page.enter_email("bnmponce@gmail.com")
         my_account_page.enter_password("Test123!")
         my_account_page.click_on_login_button()
+        expect(my_account_page.edit_your_account).to_be_visible()
+        time.sleep(3)
 
-    def test_edit_account_information(self, page: Page) -> None:
-        my_account_page = MyAccountPagePlay(page)
-        my_account_page.navigate()
-        my_account_page.login_to_account("bnmponce@gmail.com", "Test123!")
-        my_account_page.click_on_edit_your_account()
-        my_account_page.enter_first_name("MagdaUpdate")
-        my_account_page.enter_last_name("Test Last Name")
-        my_account_page.click_on_continue_button()
