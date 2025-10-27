@@ -1,5 +1,4 @@
-import os
-from config.config import BASE_URL
-
-
-print(BASE_URL["production"])
+BASE_URL:
+	development: ecommerce-playground.lambdatest.io
+	staging: ecommerce-playground.lambdatest.io
+    production: ecommerce-playground.lambdatest.io

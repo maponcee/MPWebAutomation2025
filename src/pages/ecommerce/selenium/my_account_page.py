@@ -8,7 +8,7 @@ from config.config import BASE_URL
 logger = get_logger(__name__)
 class MyAccountPage(BasePage):
 
-    register_option = (By.CLASS_NAME, "list-group-item.active")
+    register_option = (By.XPATH, "//a[text()=' Register']")
 
     def __init__(self, driver, environment):
         super().__init__(driver)
