@@ -15,6 +15,7 @@ class MyAccountPagePlay(BasePagePlay):
         self.edit_your_account: Locator = page.get_by_role("link", name=" Edit your account")
         self.register: Locator = page.get_by_role("link", name=" Register")
         self.success_my_account: Locator = page.get_by_text("Success: Your account has")
+        self.login_failed: Locator = page.get_by_text("Warning:")
 
     def click_on_register_link(self):
         self.click_element(self.register)
@@ -44,6 +45,9 @@ class MyAccountPagePlay(BasePagePlay):
         self.click_element(self.edit_your_account)
         return EditAccountPlay(self.page)
 
+    def get_failed_message(self):
+        return self.get_text(self.login_failed).strip()
+
 class EditAccountPlay(BasePagePlay):
     def __init__(self, page: Page):
         self.page = page
@@ -60,3 +64,5 @@ class EditAccountPlay(BasePagePlay):
 
     def click_on_continue_button(self):
         self.click_element(self.continue_button)
+
+

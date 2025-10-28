@@ -2,13 +2,20 @@ import re
 import random
 import time
 
+import allure
+import pytest
 from playwright.sync_api import Page, expect
 from src.pages.ecommerce.play.home_page_play import HomePagePlay
 
 
 class TestRegisterUserPlay:
 
-    def test_register_new_user(self, page: Page) -> None:
+    @allure.title("Test Smoke for register an account to Ecommerce page")
+    @allure.description("This test verifies register account page for ecommerce.")
+    @allure.tag("Register-Account", "Functional")
+    @pytest.mark.functional
+    @pytest.mark.smoke
+    def test_register_new_user(self, page: Page, log_test_name) -> None:
         """
            Test the edit account after the user is logged
            steps:

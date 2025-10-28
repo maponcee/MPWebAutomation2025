@@ -40,3 +40,12 @@ class BasePagePlay(Page):
         else:
             element_name = tag_name
         return tag_name, element_name
+
+    def get_text(self, locator):
+        """Get the text from locator"""
+        # get the text from locator | text_content | inner_text
+        if locator.inner_text():
+            element_name = locator.inner_text()
+        else:
+            element_name = ""
+        return element_name

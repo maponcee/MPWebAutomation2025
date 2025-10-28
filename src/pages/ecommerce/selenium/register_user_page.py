@@ -18,7 +18,6 @@ class RegisterUserPage(BasePage):
     success = (By.CLASS_NAME, "page-title.my-3")
     registration_failed = (By.CLASS_NAME, "alert.alert-danger.alert-dismissible")
 
-
     def click_text_box_menu(self, text_box):
         self.click_element(text_box)
 
@@ -60,4 +59,4 @@ class RegisterUserPage(BasePage):
         return self.find_element(self.success)
 
     def get_failed_response(self):
-        return  self.find_element(self.registration_failed)
+        return self.find_element(self.registration_failed)

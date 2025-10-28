@@ -1,0 +1,4 @@
+src/tests/ecommerce_pg/test_my_Account.py
+src/tests/ecommerce_pg/play/test_register_user_page_play.py
+src/tests/ecommerce_pg/play/test_my_account_play.py
+src/tests/ecommerce_pg/play/test_edit_account_play.py
