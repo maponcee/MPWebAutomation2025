@@ -1,4 +1,3 @@
-import re
 import time
 
 import allure
@@ -66,4 +65,3 @@ class TestMyAccountPlay:
         my_account_page.click_on_login_button()
         response = my_account_page.get_failed_message()
         assert message_error == response, f"Expected response: {message_error}, Actual Result: {response}"
-

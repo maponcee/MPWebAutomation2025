@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-user_name = os.getenv("USERNAME")
+user_name = os.getenv("EMAIL")
 password = os.getenv("PASSWORD")
 
 

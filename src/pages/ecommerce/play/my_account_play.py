@@ -13,8 +13,10 @@ class MyAccountPagePlay(BasePagePlay):
         self.login_button: Locator = page.get_by_role("button", name="Login")
         self.my_account: Locator = page.get_by_role("heading", name="My Account")
         self.edit_your_account: Locator = page.get_by_role("link", name=" Edit your account")
+        self.forgot_password: Locator = page.get_by_role("link", name=" Forgotten Password")
         self.register: Locator = page.get_by_role("link", name=" Register")
         self.success_my_account: Locator = page.get_by_text("Success: Your account has")
+        self.reset_confirmation: Locator = page.get_by_text("An email with a confirmation")
         self.login_failed: Locator = page.get_by_text("Warning:")
 
     def click_on_register_link(self):
@@ -45,6 +47,10 @@ class MyAccountPagePlay(BasePagePlay):
         self.click_element(self.edit_your_account)
         return EditAccountPlay(self.page)
 
+    def click_on_forgot_password(self):
+        self.click_element(self.forgot_password)
+        return ForgotPasswordPlay(self.page)
+
     def get_failed_message(self):
         return self.get_text(self.login_failed).strip()
 
@@ -66,3 +72,19 @@ class EditAccountPlay(BasePagePlay):
         self.click_element(self.continue_button)
 
 
+class ForgotPasswordPlay(BasePagePlay):
+    def __init__(self, page: Page):
+        self.page = page
+        # locators
+        self.mail_address: Locator = page.get_by_role("textbox", name="E-Mail Address*")
+        self.continue_button: Locator= page.get_by_role("button", name="Continue")
+        self.fp_failed: Locator = page.get_by_text("Warning:")
+
+    def enter_email_for_forgot_password(self, mail_address):
+        self.enter_text(self.mail_address, mail_address)
+
+    def click_on_continue_button(self):
+        self.click_element(self.continue_button)
+
+    def get_fp_failed_message(self):
+        return self.get_text(self.fp_failed).strip()

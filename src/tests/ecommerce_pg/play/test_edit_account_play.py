@@ -1,10 +1,9 @@
-import re
 import time
 
 import allure
 import pytest
+from config.config import user_name, password
 from playwright.sync_api import Page, expect
-
 from src.pages.ecommerce.play.home_page_play import HomePagePlay
 
 
@@ -27,7 +26,7 @@ class TestEditAccountPlay:
         home_page.navigate()
         home_page.hover_my_account_menu()
         my_account_page = home_page.click_on_login_menu()
-        my_account_page.login_to_account("bnmponce@gmail.com", "Test123!")
+        my_account_page.login_to_account(user_name, password)
         edit_account_page = my_account_page.click_on_edit_your_account()
         edit_account_page.enter_first_name("MagdaUpdate")
         edit_account_page.enter_last_name("Test Last Name")
@@ -35,5 +34,3 @@ class TestEditAccountPlay:
         expect(my_account_page.success_my_account).to_be_visible()
         expect(my_account_page.success_my_account).to_contain_text("Your account has been successfully updated.")
         time.sleep(3)
-
-

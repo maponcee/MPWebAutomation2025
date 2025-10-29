@@ -1,4 +1,3 @@
-import re
 import random
 import time
 
@@ -41,4 +40,3 @@ class TestRegisterUserPlay:
         expect(register_page.success).to_be_visible()
         expect(register_page.success).to_contain_text("Your Account Has Been Created")
         time.sleep(3)
-

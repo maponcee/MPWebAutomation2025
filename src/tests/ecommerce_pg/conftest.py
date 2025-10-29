@@ -1,4 +1,6 @@
 import logging
+import os
+
 import pytest
 from selenium import webdriver
 from utils.logger import get_logger
